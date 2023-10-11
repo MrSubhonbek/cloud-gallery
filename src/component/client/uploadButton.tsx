@@ -1,7 +1,7 @@
 "use client";
 import { CldUploadButton } from "next-cloudinary";
 import type { CldUploadWidgetResults } from "next-cloudinary";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
 
 export const UploadButton = () => {

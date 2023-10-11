@@ -15,7 +15,6 @@
     "class-variance-authority": "^0.7.0",
     "cloudinary": "^1.41.0",
     "clsx": "^2.0.0",
-    "fs": "^0.0.1-security",
     "next": "13.5.4",
     "next-cloudinary": "^4.23.1",
     "react": "^18",
