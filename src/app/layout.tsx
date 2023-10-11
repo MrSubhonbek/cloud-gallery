@@ -18,10 +18,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
-      <body className={inter.className}>
+      <body className={`${inter.className} container mx-auto`}>
         <div className="border-b ">
-          <div className="flex h-16 items-center px-4 container mx-auto">
-            Hi
+          <div className="flex h-16 items-center px-4 ">
+            Cloud
             <div className="ml-auto flex items-center space-x-4">
               <Avatar>
                 <AvatarImage
@@ -37,7 +37,9 @@ export default function RootLayout({
           <div className="bg-background">
             <div className="grid lg:grid-cols-5">
               <Sidebar className="hidden lg:block" />
-              {children}
+              <div className="col-span-3 lg:col-span-4 lg:border-l">
+                <div className="h-full px-4 py-6 lg:px-8">{children}</div>
+              </div>
             </div>
           </div>
         </div>
