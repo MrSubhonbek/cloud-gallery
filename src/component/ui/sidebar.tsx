@@ -1,10 +1,15 @@
 import Link from "next/link";
+import cloudinary from "cloudinary";
 
 import { cn } from "~/lib/utils";
 import { Button } from "./button";
 import { Heart } from "../icons/heart";
+import type { Folder } from "~/type";
 
-export function Sidebar({ className }: { className: string }) {
+export async function Sidebar({ className }: { className: string }) {
+  const { folders } = (await cloudinary.v2.api.root_folders()) as {
+    folders: Folder[];
+  };
   return (
     <div className={cn("pb-12", className)}>
       <div className="space-y-4 py-4">
@@ -53,6 +58,17 @@ export function Sidebar({ className }: { className: string }) {
                 Albums
               </Link>
             </Button>
+            {folders.map((folder) => (
+              <Button
+                variant="ghost"
+                asChild
+                key={folder.name}
+                className="w-full justify-start flex gap-2">
+                <Link className="pl-8" href={`/albums/${folder.path}`}>
+                  {folder.name}
+                </Link>
+              </Button>
+            ))}
             <Button variant="ghost" className="w-full">
               <Link
                 href={"/favorites"}

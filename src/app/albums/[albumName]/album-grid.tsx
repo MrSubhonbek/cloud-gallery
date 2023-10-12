@@ -1,14 +1,14 @@
 "use client";
 
-import { ImageGrid } from "@/components/image-grid";
-import { CloudinaryImage } from "@/components/cloudinary-image";
-import { SearchResult } from "@/app/gallery/page";
+import { CloudinaryImage } from "~/component/cloudinary-image";
+import { ImageGrid } from "~/component/image-grid";
+import type { ResultSearch } from "~/type";
 
-export default function AlbumGrid({ images }: { images: SearchResult[] }) {
+export default function AlbumGrid({ images }: { images: ResultSearch[] }) {
   return (
     <ImageGrid
       images={images}
-      getImage={(imageData: SearchResult) => {
+      getImage={(imageData: ResultSearch) => {
         return (
           <CloudinaryImage
             key={imageData.public_id}
