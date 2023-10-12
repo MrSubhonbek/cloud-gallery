@@ -1,11 +1,17 @@
 "use server";
+
 import cloudinary from "cloudinary";
 
-export const setMarkAsAction = async (
-  public_id: string,
-  isBookmark: boolean
-) => {
-  isBookmark
-    ? await cloudinary.v2.uploader.add_tag("bookmark", [public_id])
-    : await cloudinary.v2.uploader.remove_tag("bookmark", [public_id]);
-};
+import { ResultSearch } from "~/type";
+
+export async function addImageToAlbum(image: ResultSearch, album: string) {
+  await cloudinary.v2.api.create_folder(album);
+
+  let parts = image.public_id.split("/");
+  if (parts.length > 1) {
+    parts = parts.slice(1);
+  }
+  const publicId = parts.join("/");
+
+  await cloudinary.v2.uploader.rename(image.public_id, `${album}/${publicId}`);
+}
