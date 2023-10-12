@@ -1,18 +1,20 @@
-import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import Link from "next/link";
+import { Pencil } from "lucide-react";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Menu } from "./icons/menu";
+} from "./ui/dropdown-menu";
 import { AddToAlbumDialog } from "./add-to-album-dialog";
-import { SearchResult } from "@/app/gallery/page";
-import { useState } from "react";
-import Link from "next/link";
-import { Pencil } from "lucide-react";
+import { Menu } from "./icons/menu";
+import { Button } from "./ui/button";
 
-export function ImageMenu({ image }: { image: SearchResult }) {
+import type { ResultSearch } from "~/type";
+
+export function ImageMenu({ image }: { image: ResultSearch }) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -31,11 +33,9 @@ export function ImageMenu({ image }: { image: SearchResult }) {
             <Button
               className="cursor-pointer flex justify-start pl-4"
               asChild
-              variant="ghost"
-            >
+              variant="ghost">
               <Link
-                href={`/edit?publicId=${encodeURIComponent(image.public_id)}`}
-              >
+                href={`/edit?publicId=${encodeURIComponent(image.public_id)}`}>
                 <Pencil className="mr-2 w-4 h-4" />
                 Edit
               </Link>

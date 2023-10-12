@@ -1,5 +1,6 @@
-import { SearchResult } from "@/app/gallery/page";
-import { Button } from "@/components/ui/button";
+import { FolderPlus } from "lucide-react";
+import { useState } from "react";
+
 import {
   Dialog,
   DialogContent,
@@ -8,18 +9,19 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { FolderPlus } from "lucide-react";
-import { useState } from "react";
-import { addImageToAlbum } from "./actions";
+} from "./ui/dialog";
+import { Button } from "./ui/button";
+import { Label } from "./ui/label";
+import { Input } from "./ui/input";
+import { addImageToAlbum } from "~/sercer-action/action";
+
+import type { ResultSearch } from "~/type";
 
 export function AddToAlbumDialog({
   image,
   onClose,
 }: {
-  image: SearchResult;
+  image: ResultSearch;
   onClose: () => void;
 }) {
   const [albumName, setAlbumName] = useState("");
@@ -28,13 +30,12 @@ export function AddToAlbumDialog({
   return (
     <Dialog
       open={open}
-      onOpenChange={(newOpenState) => {
+      onOpenChange={(newOpenState: boolean) => {
         setOpen(newOpenState);
         if (!newOpenState) {
           onClose();
         }
-      }}
-    >
+      }}>
       <DialogTrigger>
         <Button variant="ghost">
           <FolderPlus className="mr-2 h-4 w-4" />
@@ -68,8 +69,7 @@ export function AddToAlbumDialog({
               setOpen(false);
               await addImageToAlbum(image, albumName);
             }}
-            type="submit"
-          >
+            type="submit">
             Add to Album
           </Button>
         </DialogFooter>

@@ -1,17 +1,19 @@
 "use client";
 
-import { Heart } from "@/components/icons/heart";
-import { CldImage, CldImageProps } from "next-cloudinary";
 import { useState, useTransition } from "react";
-import { FullHeart } from "@/components/icons/full-heart";
-import { SearchResult } from "@/app/gallery/page";
-import { setAsFavoriteAction } from "@/app/gallery/actions";
+
+import { CldImage, CldImageProps } from "next-cloudinary";
 import { ImageMenu } from "./image-menu";
+import { FullHeart } from "./icons/full-heart";
+import { Heart } from "./icons/heart";
+import { setAsFavoriteAction } from "~/sercer-action/action";
+
+import type { ResultSearch } from "~/type";
 
 export function CloudinaryImage(
   props: {
-    imageData: SearchResult;
-    onUnheart?: (unheartedResource: SearchResult) => void;
+    imageData: ResultSearch;
+    onUnheart?: (unheartedResource: ResultSearch) => void;
   } & Omit<CldImageProps, "src">
 ) {
   const [transition, startTransition] = useTransition();
