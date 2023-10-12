@@ -18,22 +18,7 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <CldUploadButton
-        onUpload={(result: CldUploadWidgetResults) => {
-          setImageId(result?.info?.public_id);
-        }}
-        uploadPreset="ml_default"
-      />
-
-      {imageId && (
-        <CldImage
-          width="500"
-          height="300"
-          src={imageId}
-          sizes="100vw"
-          alt="Description of my image"
-        />
-      )}
+      main
     </main>
   );
 }
