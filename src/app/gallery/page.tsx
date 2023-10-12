@@ -4,7 +4,6 @@ import cloudinary from "cloudinary";
 import { UploadButton } from "~/component/client/uploadButton";
 import { CloudImage } from "~/component/client/cloudImage";
 import { ResultSearch } from "~/type";
-import { ForceRefresh } from "~/lib/forceRefresh";
 
 const GalleryPage = async () => {
   const results = (await cloudinary.v2.search
@@ -16,7 +15,6 @@ const GalleryPage = async () => {
 
   return (
     <section>
-      <ForceRefresh />
       <div className="flex justify-between">
         <h1 className="text-4xl font-bold">Gallery</h1>
         <UploadButton />
