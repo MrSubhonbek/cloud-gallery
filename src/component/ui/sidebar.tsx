@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { cn } from "~/lib/utils";
 import { Button } from "./button";
-import { Bookmark } from "../icons/Bookmark";
+import { Heart } from "../icons/heart";
 
 export function Sidebar({ className }: { className: string }) {
   return (
@@ -55,10 +55,10 @@ export function Sidebar({ className }: { className: string }) {
             </Button>
             <Button variant="ghost" className="w-full">
               <Link
-                href={"/bookmark"}
+                href={"/favorites"}
                 className="w-full flex justify-start gap-1">
-                <Bookmark />
-                Bookmark
+                <Heart />
+                Favorites
               </Link>
             </Button>
           </div>
