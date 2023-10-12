@@ -1,33 +1,40 @@
-import React from "react";
 import cloudinary from "cloudinary";
 
-import { UploadButton } from "~/component/client/uploadButton";
-import { CloudImage } from "~/component/client/cloudImage";
-import { ResultSearch } from "~/type";
+import UploadButton from "./upload-button";
+import GalleryGrid from "./gallery-grid";
+import { SearchForm } from "./search-form";
 
-const GalleryPage = async () => {
+export type SearchResult = {
+  public_id: string;
+  tags: string[];
+};
+
+export default async function GalleryPage({
+  searchParams: { search },
+}: {
+  searchParams: {
+    search: string;
+  };
+}) {
   const results = (await cloudinary.v2.search
-    .expression("resource_type:image")
+    .expression(`resource_type:image${search ? ` AND tags=${search}` : ""}`)
     .sort_by("created_at", "desc")
     .with_field("tags")
-    .max_results(12)
-    .execute()) as { resources: ResultSearch[] };
+    .max_results(30)
+    .execute()) as { resources: SearchResult[] };
 
   return (
     <section>
-      <div className="flex justify-between">
-        <h1 className="text-4xl font-bold">Gallery</h1>
-        <UploadButton />
-      </div>
-      <div className="grid grid-cols-4 gap-4 py-6 max-sm:grid-cols-1 max-md:grid-cols-2 max-lg:grid-cols-3">
-        {results.resources.map((result) => (
-          <div>
-            <CloudImage imageData={result} path="/gallery" />
-          </div>
-        ))}
+      <div className="flex flex-col gap-8">
+        <div className="flex justify-between">
+          <h1 className="text-4xl font-bold">Gallery</h1>
+          <UploadButton />
+        </div>
+
+        <SearchForm initialSearch={search} />
+
+        <GalleryGrid images={results.resources} />
       </div>
     </section>
   );
-};
-
-export default GalleryPage;
+}
