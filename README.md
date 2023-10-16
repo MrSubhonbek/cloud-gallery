@@ -11,7 +11,7 @@ To run this project on your local machine, you need to have the following softwa
 After installing Node.js, follow these steps:
 
 1. Clone this repository to your local machine using the command: `git clone https://github.com/MrSubhonbek/cloud-gallery.git`
-2. Navigate to the project directory: `cd gallery-project`
+2. Navigate to the project directory: `cd cloud-gallery`
 3. Install project dependencies: `npm install`
 
 ## Usage
