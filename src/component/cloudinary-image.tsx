@@ -6,7 +6,7 @@ import { CldImage, CldImageProps } from "next-cloudinary";
 import { ImageMenu } from "./image-menu";
 import { FullHeart } from "./icons/full-heart";
 import { Heart } from "./icons/heart";
-import { setAsFavoriteAction } from "~/sercer-action/action";
+import { setAsFavoriteAction } from "~/server-action/action";
 
 import type { ResultSearch } from "~/type";
 

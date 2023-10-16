@@ -13,7 +13,7 @@ import {
 import { Button } from "./ui/button";
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
-import { addImageToAlbum } from "~/sercer-action/action";
+import { addImageToAlbum } from "~/server-action/action";
 
 import type { ResultSearch } from "~/type";
 
